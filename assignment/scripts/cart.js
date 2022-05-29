@@ -1,8 +1,13 @@
 console.log('***** Cart Functions *****');
 // Make sure to test all functions here in the JS file!
 // We want to see how you are testing your code!!!
-const basket = [];
+let basket = [];
+const maxItems = 5;
+
 function addItem(item) {
+    if (isFull(basket.length)) {
+        return false;
+    } 
     basket.push(item);
     return true;
 }
@@ -18,43 +23,41 @@ function listItems(basket) {
 console.log(listItems(basket));
 
 function empty(basket) {
-    for (let i = 0; i < basket.length; i++) {
-        return (basket = []);  
-    }
+    basket.length = 0;  
 }
+
 console.log(empty(basket));
 
 //----------------------------------------------------------------
-const maxItems = 5;
+// const maxItems = 5;
 
 function isFull(number) {
     return (number >= maxItems ? true : false);
 }
 console.log(isFull(2));
 
-// function addItem(item) {
-    // basket.push(item);
-    // function isFull(basket) {
-        // if (basket.length <= maxItems) {
-          //  return true;
-       //  }
-        // else {
-         //    return false;
-       //  }
-// }
-// }
+function addItem(item) {
+    if (isFull(basket.length)) {
+        return false;
+    } 
+    basket.push(item);
+    return true;
+}
 
 console.log(`Basket is ${basket}`);
 console.log('Adding bananas:', addItem('bananas'));
 console.log(`Basket is now ${basket}`);
 console.log(isFull(basket));
 
-// function removeItem(item) {
-//     Array.indexOf(item)
-//     Array.splice(item)
-//     if found {return Array.splice(item);
-//     }    
-//     else {
-//         return null;
-//     }
-// }
+console.log('Remove oranges: ', removeItem('oranges'))
+console.log('Remove bananas: ', removeItem('bananas'))
+
+function removeItem(item) {
+    const itemIndex = basket.indexOf(item);
+    if (itemIndex === -1) {
+        console.log("Not found");
+        return null;
+    }
+    const removedItem = basket.splice(itemIndex, 1);
+    return removedItem;
+}   
